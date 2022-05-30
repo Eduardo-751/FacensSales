@@ -4,11 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Panel;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+
+import Main.Main;
 
 import java.awt.Dimension;
 import javax.swing.JLabel;
@@ -16,6 +19,9 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import net.miginfocom.swing.MigLayout;
 
 public class Sales extends JFrame {
@@ -32,7 +38,7 @@ public class Sales extends JFrame {
 	public Sales() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setBounds(100, 100, 1922, 1082);
+		setBounds(0, 0, 1920, 1080);
 		setUndecorated(true);
 		setVisible(true);
 		contentPane = new JPanel();
@@ -40,11 +46,23 @@ public class Sales extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		Panel panelMenu = new Panel();
-		panelMenu.setBounds(0, 0, 1920, 180);
-		panelMenu.setBackground(new Color(102, 153, 255));
-		contentPane.add(panelMenu);
+		Panel panel = new Panel();
+		panel.setBackground(new Color(51, 153, 255));
+		panel.setBounds(0, 0, 1920, 130);
+		contentPane.add(panel);
+		panel.setLayout(null);
 
+		JLabel lblBack = new JLabel("");
+		lblBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Main.frame.dispose();
+			}
+		});
+		lblBack.setIcon(new ImageIcon(Menu.class.getResource("/Img/icons8-back-32.png")));
+		lblBack.setBounds(49, 35, 42, 49);
+		panel.add(lblBack);
+		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(20, 650, 300, 410);
 		contentPane.add(scrollPane_1);

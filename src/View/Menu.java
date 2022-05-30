@@ -47,6 +47,7 @@ public class Menu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Main.frame.dispose();
+				Main.frame = new Login();
 			}
 		});
 		lblBack.setIcon(new ImageIcon(Menu.class.getResource("/Img/icons8-back-32.png")));
@@ -64,7 +65,6 @@ public class Menu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Main.frame = new Sales();
-				// Main.frame.setVisible(true);
 			}
 		});
 		lblCaixa.setIcon(new ImageIcon(Menu.class.getResource("/Img/Caixa.png")));
@@ -75,6 +75,7 @@ public class Menu extends JFrame {
 		lblEstoque.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Main.frame = new Inventory();
 			}
 		});
 		lblEstoque.setIcon(new ImageIcon(Menu.class.getResource("/Img/Estoque.png")));

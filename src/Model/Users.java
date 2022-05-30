@@ -15,10 +15,11 @@ public class Users {
 		this.name = name;
 		this.sex = sex;
 		this.profile = profile;
-		this.login = login;
-		this.password = password;
+		this.setLogin(login);
+		this.setPassword(password);
 	}
 	
+	//Gets and Sets
 	public int getIdUser() {
 		return idUser;
 	}
@@ -42,5 +43,17 @@ public class Users {
 	}
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
 	}	
 }

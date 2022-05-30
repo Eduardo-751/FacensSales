@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DB.DAL;
 import Main.Main;
 
 import javax.swing.JTextField;
@@ -32,6 +33,7 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	private JProgressBar progressBar;
 	private Container containerLogin = new Container(), containerLoading = new Container();
+	private DAL connection = new DAL();
 
 	/**
 	 * Create the frame.
@@ -86,11 +88,20 @@ public class Login extends JFrame {
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (txtLogin.getText().equals("admin") && "admin".equals(new String(passwordField.getPassword()))) {
-					dispose();
-					Main.frame = new Menu();
-				} else
-					JOptionPane.showMessageDialog(null, "Invalid Password!");
+				connection.getConnection();
+				try {
+                    if(txtLogin.getText().equals("admin") && "admin".equals(new String(passwordField.getPassword()))) {
+    		            //connection.executarSQL("\"SELECT * FROM users WHERE userLogin = " + txtLogin.getText() + " AND userPassword = " + String.valueOf(passwordField.getPassword()));
+                    	Main.frame.dispose();
+                    	Main.frame = new Menu();
+                    }
+                    else
+                    	JOptionPane.showMessageDialog(null, "Login ou Senha invalida!");
+		        } catch (Exception ex) {
+		            System.out.println("Erro ao Logar " +  ex.getMessage());
+		        } finally{            
+		            connection.closeConnection(connection.getConn());
+		        }   
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 30));

@@ -8,9 +8,10 @@ Create Table Category(
 
 Create Table Iten(
 	idItem int Not Null Auto_increment,
-	itenDescription Varchar(30) Not Null,
+	itenName Varchar(30) Not Null,
+	itenDescription Varchar(60) Not Null,
 	itenCostValue double Not Null,
-	itenUnits int Not Null,
+	qtd int Not Null,
 	idCategory int Not Null,
 	PRIMARY KEY (idItem),
     FOREIGN KEY (idCategory) REFERENCES Category(idCategory)
@@ -48,5 +49,8 @@ Create Table Sales(
 	idIten int Not Null,
 	PRIMARY KEY (idSales),
     FOREIGN KEY (idUser) REFERENCES Users(idUser),
-    FOREIGN KEY (idIten) REFERENCES Iten(idIten)
+    FOREIGN KEY (idIten) REFERENCES Iten(idItem)
 );
+
+Insert into UserPermission (cadastroUser, excluirUser, cadastroCliente, excluirCliente, cadastrarIten, excluirIten, verEstoque, cadastrarVenda, excluirVenda) Values (true, true, true, true, true, true, true, true, true);
+Insert into Users (userName, userLastName, userLogin, userPassword, idPermission) values ('Eduado', 'Camargo', 9999, 9999, 1);
